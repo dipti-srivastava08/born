@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- Mobile perfect viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Happy Birthday My Love 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+  font-family:'Poppins',sans-serif;
+}
+
+/* ---------------- BODY ---------------- */
+body{
+  background:linear-gradient(180deg,#f4c2d7,#e8d8f3);
+  color:#2b1d2b;
+  scroll-behavior:smooth;
+}
+
+/* ---------------- SECTIONS ---------------- */
+section{
+  min-height:100vh;
+  padding:60px 15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ---------------- HEADINGS ---------------- */
+h1,h2{
+  font-family:'Great Vibes',cursive;
+  font-size:3rem;
+  color:#7b3f6c;
+  margin-bottom:20px;
+  text-shadow:0 0 10px rgba(200,150,200,.4);
+}
+
+p{
+  max-width:720px;
+  font-size:1.05rem;
+  margin-bottom:20px;
+}
+
+/* ---------------- BUTTON ---------------- */
+.btn{
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#f4a6c1,#c9a7eb);
+  color:white;
+  cursor:pointer;
+  font-size:1rem;
+  box-shadow:0 10px 25px rgba(200,140,200,.4);
+  transition:.3s;
+}
+.btn:hover{
+  transform:scale(1.08);
+}
+
+/* ---------------- LOCK SCREEN ---------------- */
+#lock{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#fce7f3,#c7a4d8);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+#lock input{
+  padding:12px;
+  border-radius:15px;
+  border:none;
+  width:80%;
+  max-width:260px;
+  text-align:center;
+}
+
+/* ---------------- CANDLE ---------------- */
+.candle{
+  width:26px;
+  height:80px;
+  background:#4b145b;
+  border-radius:10px;
+  position:relative;
+}
+.flame{
+  width:18px;
+  height:18px;
+  background:radial-gradient(circle,#fff6a3,#ff9aa2);
+  border-radius:50%;
+  position:absolute;
+  top:-16px;
+  left:4px;
+  animation:flicker .3s infinite;
+}
+@keyframes flicker{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.4)}
+  100%{transform:scale(1)}
+}
+
+/* ---------------- CONFETTI ---------------- */
+.confetti{
+  position:fixed;
+  inset:0;
+  background-image:radial-gradient(circle,#f4a6c1 3px,transparent 3px);
+  background-size:30px 30px;
+  animation:fall 18s linear infinite;
+  pointer-events:none;
+}
+@keyframes fall{
+  from{background-position:0 0}
+  to{background-position:0 1200px}
+}
+
+/* ---------------- CARDS ---------------- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  max-width:1000px;
+  width:100%;
+}
+.card{
+  background:#fff7fb;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 15px 30px rgba(194, 108, 165, 0.3);
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-10px);
+}
+
+/* ---------------- TIMELINE ---------------- */
+.timeline{
+  max-width:800px;
+  width:100%;
+}
+.date-card{
+  background:#fff;
+  padding:20px;
+  border-left:5px solid #d291bc;
+  margin:15px 0;
+  box-shadow:0 10px 25px rgba(180,120,160,.25);
+}
+.date{
+  font-family:'Great Vibes',cursive;
+  font-size:1.6rem;
+  color:#8a4f7d;
+}
+
+/* ---------------- PHOTOS ---------------- */
+.polaroid{
+  background:white;
+  padding:12px;
+  width:90%;
+  max-width:240px;
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
+  transform:rotate(-3deg);
+  transition:.4s;
+}
+.polaroid:hover{
+  transform:rotate(0) scale(1.05);
+}
+.polaroid img{
+  width:100%;
+  height:auto;
+}
+
+/* ---------------- PROMISE ---------------- */
+#promise{
+  position:fixed;
+  inset:0;
+  background:rgba(241, 229, 52, 0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9998;
+}
+
+/* ---------------- HEARTS ---------------- */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:22px;
+  animation:floatUp 7s linear infinite;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
+}
+
+/* ---------------- MOBILE ---------------- */
+@media(max-width:768px){
+  h1,h2{font-size:2.2rem}
+  p{font-size:1rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+  <h1>Our Secret 💜</h1>
+  <input id="pass" placeholder="password">
+  <br><br>
+  <button class="btn" onclick="unlock()">Unlock ✨</button>
+</div>
+
+<!-- PROMISE -->
+<div id="promise">
+  <div class="card">
+    <h1>My Promise 💍</h1>
+    <p>I choose you every day, in every universe, in every lifetime
+        I promise to choose you in silence, laughter, chaos, and calm.  
+      My heart as well as me myself belongs to you — always ever till end..</p>
+    <button class="btn" onclick="promise.style.display='none'">Close 💖</button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CANDLE -->
+<section id="candle" class="show">
+  <h1>Make a Wish 🎂</h1>
+  <p>Blow the candle (virtually)</p>
+  <div class="candle">
+    <div class="flame" id="flame"></div>
+  </div>
+  <br>
+  <button class="btn" onclick="blow()">Blow 💨</button>
+</section>
+
+<!-- BIRTHDAY -->
+<section id="birthday">
+  <div class="confetti"></div>
+  <h1>Happy Birthday Mr. Pookieeeeeeee🎉💖</h1>
+  <p>You are my forever, my miracle, my magic , my eternity.</p>
+  <button class="btn" onclick="scrollToId('cards')">Open Cards 💌</button>
+</section>
+
+<!-- CARDS -->
+<section id="cards">
+  <h2>Greeting Cards 💌</h2>
+  <div class="cards">
+    <div class="card">You are my favorite feeling.</div>
+    <div class="card">With you, life is soft and real.</div>
+    <div class="card">Forever looks good with you.</div>
+  </div>
+  <button class="btn" onclick="scrollToId('dates')">Our Dates 📜</button>
+</section>
+
+<!-- DATES -->
+<section id="dates">
+  <h2>Our Special Dates</h2>
+  <div class="timeline">
+    <div class="date-card">
+      <div class="date">The Day it all started (8th may 2025) </div>
+      <p>The day you wished me and after that finally something was destined to be cooked between us .</p>
+    </div>
+    <div class="date-card">
+      <div class="date">The Day We Met (14th july 2025) </div>
+      <p>The day when we had a coffee and maggie date (actually that time it was the unofficial date).</p>
+    </div>
+    <div class="date-card">
+      <div class="date">First Deep Conversation (21st july 2025)</div>
+      <p>When words started turning into feelings.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">First HUG (30th july 2025)</div>
+      <p>When you denied first but that hug literally felt so peaceful and warm.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">First KISS (13th August 2025)</div>
+      <p>The day when i realised that its not just a normal feeling but a true feeling of belongingness and faith towards you (remember that was a challenge between us and the way we kissed for almost 7 times ).</p>
+    </div>
+     <div class="date-card">
+      <div class="date">The Confession (17th August 2025)</div>
+      <p>When we finally confessed our feelings and give this pyaara relation a name.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">The first physical touch (23rd August 2025)</div>
+      <p>When we got to know that how horny we are:() .</p>
+    </div>
+    <div class="date-card">
+      <div class="date">Our first trip - from college to home (26th August 2025)</div>
+      <p>The roads were limited but not our feelings and that shield....yaad aaya kuch.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">Our second trip - from home to college (4th sept 2025)</div>
+      <p>The train ride and the moments....and you ..the chance taker.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">When you got placed (8th sept 2025)</div>
+      <p>The day when i understood the meaning of staying away.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">When we dressed well (25th sept 2025)</div>
+      <p>when we were dressed well and brooo....bahott roiii thiiiiiii maiii.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">Home going day (26th sept 2025)</div>
+      <p>jab tu jara tha or mai late se aai ...itna dard hua na ki ek baar teko ache se dekh bhi nhi paai but thanks to bus ki hum mile ache se...then bye for a long time...</p>
+    </div>
+     <div class="date-card">
+      <div class="date">Your joining day (8th oct 2025)</div>
+      <p>When you entered a new phase of your life.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">When i saw you after 42 days (8th Nov 2025)</div>
+      <p>when i saw you after these many days at our spot and that hugs and kisses and touch...ohh myy godddddddd
+        . i was like who will die for just one meet up until its my turnand even now i am waiting to meet you..see you and feel us again</p>
+    </div>
+    <div class="date-card">
+      <div class="date">Our outings (9th,16th,23rd Nov 2025)</div>
+      <p>that was really the moment because hum itne sundar jo dikh rhe the and wo mandir jana and wo last wala outing jisme toh tu unbox hi nhi kar paya.</p>
+    </div>
+    <div class="date-card">
+      <div class="date">The day before going back to long distance (24th Nov 2025)</div>
+      <p>when it was the time for bye again ...wahi rona dhona and the locket you gifted me .</p>
+    </div>
+    <div class="date-card">
+      <div class="date">The day when a special person my favorite soul was born 💖(18th Jan 2026)</div>
+      <p>its your birthday finally .
+
+        still counting on more memorable moments and days so that we could say our childrens that we had done these things
+      </p>
+    </div>
+  </div>
+  <button class="btn" onclick="scrollToId('photos')"> Our Memories 📸</button>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <h2>Our Memories 📸</h2>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center">
+    <div class="polaroid"><img src="img1.jpg">ALWAYS YOU🤍</div>
+    <div class="polaroid"><img src="img2.jpg">MY HOME AWAY FROM HOME 💖</div>
+    <div class="polaroid"><img src="img3.jpg">MY CALM💜</div>
+  </div>
+  <button class="btn" onclick="promise.style.display='flex'"> Open Promise 💍</button>
+</section>
+
+<footer style="padding:20px;text-align:center">
+  Made with infinite love 💕
+</footer>
+
+<script>
+function unlock(){
+  if(pass.value.toLowerCase()==="love"){
+    lock.style.display="none";
+    document.getElementById("bgMusic").play().catch(()=>{});
+  }else alert("Try again 💜");
+}
+
+function blow(){
+  flame.style.display="none";
+  setTimeout(()=>{
+    scrollToId("birthday");
+    birthday.classList.add("show");
+  },300);
+}
+
+function scrollToId(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* reveal */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top < window.innerHeight-120){
+      s.classList.add("show");
+    }
+  });
+});
+
+/* hearts */
+const hearts=["💖","💜","✨"];
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},500);
+</script>
+
+</body>
+</html>
